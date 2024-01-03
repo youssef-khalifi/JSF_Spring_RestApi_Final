@@ -32,6 +32,8 @@
     <bean id="tm" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sf" />
     </bean>
+    <bean id="model" class="org.modelmapper.ModelMapper">
+    </bean>
 
     <tx:annotation-driven transaction-manager="tm" />
 </beans>

@@ -6,6 +6,6 @@ public interface IDAO<T> {
 
     void saveOrUpdate(T t);
     void delete(T t);
-    T getById(int id);
+    T getById(Integer id);
     List<T> getAll();
 }

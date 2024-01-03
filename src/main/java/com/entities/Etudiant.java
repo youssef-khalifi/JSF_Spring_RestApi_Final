@@ -16,7 +16,7 @@ public class Etudiant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID", nullable = false)
-    private int id;
+    private Integer id;
     @Basic
     @Column(name = "NOM", nullable = false, length = 255)
     private String nom;

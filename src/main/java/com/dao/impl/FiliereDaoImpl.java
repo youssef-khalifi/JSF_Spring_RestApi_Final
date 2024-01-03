@@ -35,7 +35,7 @@ public class FiliereDaoImpl extends HibernateDaoSupport implements FiliereDao {
     }
 
     @Override
-    public Filiere getById(int id) {
+    public Filiere getById(Integer id) {
         System.out.println("get filiere by id");
         return this.getHibernateTemplate().get(Filiere.class , id);
     }

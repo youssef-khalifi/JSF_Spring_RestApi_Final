@@ -18,7 +18,7 @@ public class Filiere {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID", nullable = false)
-    private int id;
+    private Integer id;
     @Basic
     @Column(name = "CODE", nullable = true, length = 255)
     private String code;

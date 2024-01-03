@@ -34,7 +34,7 @@ public class EtudiantFiliereImpl extends HibernateDaoSupport implements Etudiant
     }
 
     @Override
-    public Etudiant getById(int id) {
+    public Etudiant getById(Integer id) {
         System.out.println("get etudiant by id");
         return this.getHibernateTemplate().get(Etudiant.class , id);
     }
