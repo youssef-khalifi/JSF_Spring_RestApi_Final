@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/filiere")
 @CrossOrigin
 public class FiliereController {
 
@@ -23,14 +23,14 @@ public class FiliereController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @GetMapping(value = "filiere")
+    @GetMapping(value = "getId")
     @ResponseBody
     public ResponseEntity<FiliereDTO> getById(@RequestParam int id) {
         Filiere filiere = filiereService.getById(id);
         return new ResponseEntity<>(convertToDto(filiere) , HttpStatus.OK);
     }
 
-    @GetMapping("filieres")
+    @GetMapping("all")
     @ResponseBody
     public List<FiliereDTO> getAll(){
         List<Filiere> filieres = filiereService.getAll();
@@ -61,6 +61,12 @@ public class FiliereController {
         return new ResponseEntity<>(convertToDto(f), HttpStatus.OK);
     }
 
+    @GetMapping("getCode")
+    @ResponseBody
+    public ResponseEntity<FiliereDTO> getByCode(@RequestParam String code){
+       Filiere f = this.filiereService.getByCode(code);
+        return new ResponseEntity<>(convertToDto(f) , HttpStatus.OK);
+    }
 
     private FiliereDTO convertToDto(Filiere filiere) {
         return modelMapper.map(filiere, FiliereDTO.class);

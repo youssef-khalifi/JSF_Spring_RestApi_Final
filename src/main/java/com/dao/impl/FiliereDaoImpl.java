@@ -4,6 +4,9 @@ import com.dao.FiliereDao;
 import com.entities.Filiere;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -50,6 +53,12 @@ public class FiliereDaoImpl extends HibernateDaoSupport implements FiliereDao {
     @Override
     public Filiere getByCode(String code) {
         System.out.println("get filiere by code");
-        return this.getHibernateTemplate().get(Filiere.class , code);
+
+        DetachedCriteria criteria = DetachedCriteria.forClass(Filiere.class);
+        criteria.add(Restrictions.eq("code", code).ignoreCase());
+
+        List<Filiere> result = (List<Filiere>) this.getHibernateTemplate().findByCriteria(criteria);
+
+        return result.isEmpty() ? null : result.get(0);
     }
 }
