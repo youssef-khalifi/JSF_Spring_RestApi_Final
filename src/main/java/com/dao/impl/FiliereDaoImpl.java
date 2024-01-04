@@ -16,27 +16,23 @@ import java.util.List;
 
 @Repository
 public class FiliereDaoImpl extends HibernateDaoSupport implements FiliereDao {
-
     @Autowired
     public void setUpSessionFactory(SessionFactory sessionFactory) {
         System.out.println("Setting up SessionFactory");
         this.setSessionFactory(sessionFactory);
     }
-
     @Override
     @Transactional
     public void saveOrUpdate(Filiere filiere) {
         System.out.println("saveOrUpdate filiere");
         this.getHibernateTemplate().saveOrUpdate(filiere);
     }
-
     @Override
     @Transactional
     public void delete(Filiere filiere) {
         System.out.println("delete filiere ");
         this.getHibernateTemplate().delete(filiere);
     }
-
     @Override
     public Filiere getById(Integer id) {
         System.out.println("get filiere by id");
@@ -53,12 +49,9 @@ public class FiliereDaoImpl extends HibernateDaoSupport implements FiliereDao {
     @Override
     public Filiere getByCode(String code) {
         System.out.println("get filiere by code");
-
         DetachedCriteria criteria = DetachedCriteria.forClass(Filiere.class);
         criteria.add(Restrictions.eq("code", code).ignoreCase());
-
         List<Filiere> result = (List<Filiere>) this.getHibernateTemplate().findByCriteria(criteria);
-
         return result.isEmpty() ? null : result.get(0);
     }
 }

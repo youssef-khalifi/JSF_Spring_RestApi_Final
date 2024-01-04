@@ -19,17 +19,14 @@ public class FiliereController {
 
     @Autowired
     private FiliereService filiereService;
-
     @Autowired
     private ModelMapper modelMapper;
-
     @GetMapping(value = "getId")
     @ResponseBody
     public ResponseEntity<FiliereDTO> getById(@RequestParam int id) {
         Filiere filiere = filiereService.getById(id);
         return new ResponseEntity<>(convertToDto(filiere) , HttpStatus.OK);
     }
-
     @GetMapping("all")
     @ResponseBody
     public List<FiliereDTO> getAll(){
@@ -49,9 +46,8 @@ public class FiliereController {
     public ResponseEntity<String> delete(@RequestParam int id){
         Filiere f = filiereService.getById(id);
         this.filiereService.delete(f);
-        return new ResponseEntity<>("Filiere Deleted",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Filiere Deleted",HttpStatus.OK);
     }
-
     @PutMapping("update")
     public ResponseEntity<FiliereDTO> update(@RequestParam int id, @RequestBody FiliereDTO updatedFiliereDTO) {
         Filiere f = filiereService.getById(id);
@@ -60,7 +56,6 @@ public class FiliereController {
         filiereService.saveOrUpdate(f);
         return new ResponseEntity<>(convertToDto(f), HttpStatus.OK);
     }
-
     @GetMapping("getCode")
     @ResponseBody
     public ResponseEntity<FiliereDTO> getByCode(@RequestParam String code){

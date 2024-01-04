@@ -27,7 +27,6 @@ public class EtudiantController {
     private FiliereService filiereService;
     @Autowired
     private ModelMapper modelMapper;
-
     @PostMapping("save")
     @ResponseBody
     public ResponseEntity<EtudiantDTO> saveEtudiant(@RequestBody EtudiantDTO etudiantDTO) {
@@ -37,7 +36,6 @@ public class EtudiantController {
         etudiantService.saveOrUpdate(etudiant);
         return new ResponseEntity<>(convertToDto(etudiant), HttpStatus.CREATED);
     }
-
     @GetMapping("all")
     @ResponseBody
     public List<EtudiantDTO> getAllEtudiants() {
@@ -52,14 +50,12 @@ public class EtudiantController {
         Etudiant etudiant = etudiantService.getById(id);
         return new ResponseEntity<>(convertToDto(etudiant), HttpStatus.OK);
     }
-
     @DeleteMapping("delete")
     public ResponseEntity<String> delete(@RequestParam int id){
         Etudiant e =  this.etudiantService.getById(id);
         this.etudiantService.delete(e);
         return new ResponseEntity<>("Etudiant Deleted" , HttpStatus.OK);
     }
-
     @PutMapping("update")
     public ResponseEntity<EtudiantDTO> updateEtudiant(@RequestParam int id, @RequestBody EtudiantDTO updatedEtudiantDTO) {
         Filiere f = this.filiereService.getByCode(updatedEtudiantDTO.getFiliere());
@@ -70,10 +66,6 @@ public class EtudiantController {
         etudiantService.saveOrUpdate(etudiant);
         return new ResponseEntity<>(convertToDto(etudiant), HttpStatus.OK);
     }
-
-
-
-
     private EtudiantDTO convertToDto(Etudiant etudiant) {
         EtudiantDTO etudiantDTO = modelMapper.map(etudiant, EtudiantDTO.class);
         etudiantDTO.setFiliere(etudiant.getFiliere().getCode());

@@ -17,22 +17,18 @@ import java.util.List;
 @Component
 @Scope("session")
 public class FiliereBean {
-
     @Autowired
     private FiliereService filiereService;
     private Filiere filiere;
     private boolean Modify;
-
     public FiliereBean() {
         this.setFiliere(new Filiere());
         this.setModify(false);
     }
-
     public String getLabel(){
         if(!Modify) return "Save";
         return "Edit";
     }
-
     @Transactional
     public void save(){
         this.filiereService.saveOrUpdate(this.filiere);

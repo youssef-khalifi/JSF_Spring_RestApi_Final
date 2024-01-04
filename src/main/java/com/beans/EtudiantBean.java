@@ -25,14 +25,10 @@ public class EtudiantBean {
     private Etudiant etudiant;
     private Filiere filiere;
     private boolean Modify;
-
-
-
     public EtudiantBean() {
         this.setFiliere(new Filiere());
         this.setModify(false);
     }
-
     public String getLabel(){
         if(!Modify) return "Save";
         return "Edit";

@@ -13,7 +13,6 @@ import java.util.List;
 
 @Repository
 public class EtudiantFiliereImpl extends HibernateDaoSupport implements EtudiantDao {
-
     @Autowired
     public void setUpSessionFactory(SessionFactory sessionFactory) {
         System.out.println("Setting up SessionFactory");
@@ -25,14 +24,12 @@ public class EtudiantFiliereImpl extends HibernateDaoSupport implements Etudiant
         System.out.println("saveOrUpdate etudiant");
         this.getHibernateTemplate().saveOrUpdate(etudiant);
     }
-
     @Override
     @Transactional
     public void delete(Etudiant etudiant) {
         System.out.println("delete filiere");
         this.getHibernateTemplate().delete(etudiant);
     }
-
     @Override
     public Etudiant getById(Integer id) {
         System.out.println("get etudiant by id");
